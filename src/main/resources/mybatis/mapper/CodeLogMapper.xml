@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coding.temp.dao.CodeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.coding.temp.entity.CodeLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="log_desc" property="logDesc" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="log_level_code" property="logLevelCode" jdbcType="VARCHAR" />
+    <result column="log_level" property="logLevel" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, log_desc, user_id, log_level_code, log_level, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from code_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from code_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.coding.temp.entity.CodeLog" >
+    insert into code_log (id, log_desc, user_id, 
+      log_level_code, log_level, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{logDesc,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{logLevelCode,jdbcType=VARCHAR}, #{logLevel,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coding.temp.entity.CodeLog" >
+    insert into code_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="logDesc != null" >
+        log_desc,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="logLevelCode != null" >
+        log_level_code,
+      </if>
+      <if test="logLevel != null" >
+        log_level,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="logDesc != null" >
+        #{logDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="logLevelCode != null" >
+        #{logLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logLevel != null" >
+        #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coding.temp.entity.CodeLog" >
+    update code_log
+    <set >
+      <if test="logDesc != null" >
+        log_desc = #{logDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="logLevelCode != null" >
+        log_level_code = #{logLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logLevel != null" >
+        log_level = #{logLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coding.temp.entity.CodeLog" >
+    update code_log
+    set log_desc = #{logDesc,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      log_level_code = #{logLevelCode,jdbcType=VARCHAR},
+      log_level = #{logLevel,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

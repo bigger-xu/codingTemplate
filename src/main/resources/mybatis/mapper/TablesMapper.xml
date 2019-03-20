@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coding.temp.dao.TablesMapper" >
+  <resultMap id="BaseResultMap" type="com.coding.temp.entity.Tables" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="table_desc" property="tableDesc" jdbcType="VARCHAR" />
+    <result column="name_space" property="nameSpace" jdbcType="VARCHAR" />
+    <result column="object_name" property="objectName" jdbcType="VARCHAR" />
+    <result column="object_variable_name" property="objectVariableName" jdbcType="VARCHAR" />
+    <result column="db_id" property="dbId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, code, table_desc, name_space, object_name, object_variable_name, db_id, 
+    user_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tables
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tables
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.coding.temp.entity.Tables" >
+    insert into tables (id, name, code, 
+      table_desc, name_space, object_name, 
+      object_variable_name, db_id, user_id, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{tableDesc,jdbcType=VARCHAR}, #{nameSpace,jdbcType=VARCHAR}, #{objectName,jdbcType=VARCHAR}, 
+      #{objectVariableName,jdbcType=VARCHAR}, #{dbId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coding.temp.entity.Tables" >
+    insert into tables
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="tableDesc != null" >
+        table_desc,
+      </if>
+      <if test="nameSpace != null" >
+        name_space,
+      </if>
+      <if test="objectName != null" >
+        object_name,
+      </if>
+      <if test="objectVariableName != null" >
+        object_variable_name,
+      </if>
+      <if test="dbId != null" >
+        db_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDesc != null" >
+        #{tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSpace != null" >
+        #{nameSpace,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null" >
+        #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectVariableName != null" >
+        #{objectVariableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dbId != null" >
+        #{dbId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coding.temp.entity.Tables" >
+    update tables
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDesc != null" >
+        table_desc = #{tableDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="nameSpace != null" >
+        name_space = #{nameSpace,jdbcType=VARCHAR},
+      </if>
+      <if test="objectName != null" >
+        object_name = #{objectName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectVariableName != null" >
+        object_variable_name = #{objectVariableName,jdbcType=VARCHAR},
+      </if>
+      <if test="dbId != null" >
+        db_id = #{dbId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coding.temp.entity.Tables" >
+    update tables
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      table_desc = #{tableDesc,jdbcType=VARCHAR},
+      name_space = #{nameSpace,jdbcType=VARCHAR},
+      object_name = #{objectName,jdbcType=VARCHAR},
+      object_variable_name = #{objectVariableName,jdbcType=VARCHAR},
+      db_id = #{dbId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

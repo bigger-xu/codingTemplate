@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.3.RELEASE</version>
+        <version>1.5.19.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.coding</groupId>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.0</version>
+            <version>1.3.3</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -68,7 +68,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/money?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false]]></jdbc.url>
+                <jdbc.url><![CDATA[jdbc:mysql://localhost:3306/easy_coding?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false]]></jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>root</jdbc.password>
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
