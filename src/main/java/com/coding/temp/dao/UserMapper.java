@@ -11,4 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserMapper extends BaseDao<User> {
+    /**
+     * 根据用户名查询
+     * @param userName
+     * @return
+     */
+    User selectByUserName(String userName);
 }

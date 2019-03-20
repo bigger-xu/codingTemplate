@@ -21,4 +21,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     public UserMapper getNameSpace() {
         return userMapper;
     }
+
+    @Override
+    public User selectByUserName(String userName) {
+        return userMapper.selectByUserName(userName);
+    }
 }

@@ -12,4 +12,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService extends BaseService<User> {
+    /**
+     * 根据用户名查询
+     * @param userName
+     * @return
+     */
+    User selectByUserName(String userName);
 }
