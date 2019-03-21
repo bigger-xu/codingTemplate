@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 /**
  * @author Zhang Yongei
  * @version 1.0
@@ -23,15 +25,62 @@ public class ConnectController {
     @Autowired
     private ConnectService connectService;
 
+    /**
+     * 数据库连接首页
+     * @return
+     */
     @RequestMapping
     public String index(){
         return "connect/index";
     }
 
+    /**
+     * 列表数据
+     * @return
+     */
+    @RequestMapping("list")
+    @ResponseBody
+    public Result list(){
+        
+        return null;
+    }
+
+    /**
+     * 添加或者修改
+     * @param connect
+     * @return
+     */
     @RequestMapping("saveOrUpdate")
     @ResponseBody
     public Result saveOrUpdate(Connect connect){
+        try{
+            Date date  = new Date();
+            if(connect.getId() != null){
+                connect.setCreateTime(date);
+                connectService.insert(connect);
+            }else{
+                connectService.updateByPrimaryKeySelective(connect);
+            }
+            return Result.ok();
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
 
-        return null;
+    /**
+     * 删除数据
+     * @param id
+     * @return
+     */
+    @RequestMapping("delete")
+    @ResponseBody
+    public Result delete(Integer id){
+        try{
+            connectService.deleteByPrimaryKey(id);
+            return Result.ok();
+        }catch (Exception e){
+            return Result.error();
+        }
     }
 }
