@@ -15,7 +15,7 @@ public interface BaseService<T> extends Serializable {
      * @param id
      * @return
      */
-    T selectByPrimaryKey(Integer id);
+    T selectByPrimaryKey(Long id);
 
     /**
      * 获取所有列表
@@ -49,18 +49,11 @@ public interface BaseService<T> extends Serializable {
      * @param id
      * @return
      */
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     /**
      * 查询总条数
      * @return
      */
     int selectListCount();
-
-    /**
-     * 查询分页
-     * @param obj
-     * @return
-     */
-    Page<T> selectPage(T obj);
 }

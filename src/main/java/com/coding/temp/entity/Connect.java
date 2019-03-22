@@ -8,7 +8,7 @@ import java.util.Date;
  * @date 2019-03-20
  * @version 1.0
  */
-public class Connect {
+public class Connect extends BaseEntity{
     private Long id;
 
     private String connectName;

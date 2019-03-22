@@ -19,7 +19,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     public abstract BaseDao<T> getNameSpace();
 
     @Override
-    public T selectByPrimaryKey(Integer id) {
+    public T selectByPrimaryKey(Long id) {
         return getNameSpace().selectByPrimaryKey(id);
     }
 
@@ -47,7 +47,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int deleteByPrimaryKey(Integer id) {
+    public int deleteByPrimaryKey(Long id) {
         return getNameSpace().deleteByPrimaryKey(id);
     }
 
@@ -55,14 +55,4 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     public int selectListCount() {
         return getNameSpace().selectListCount();
     }
-
-    @Override
-    public Page<T> selectPage(T obj){
-        List<T> list = getNameSpace().selectPageList(obj);
-        int count = getNameSpace().selectPageCount();
-        Page<T> page = new Page<>(count);
-        page.setItems(list);
-        return page;
-    }
-
 }

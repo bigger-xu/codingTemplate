@@ -41,7 +41,7 @@ public class TablesController {
     @ResponseBody
     public Object list(Tables tables){
         try {
-            return tablesService.selectPage(tables);
+            return null;
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();
@@ -78,7 +78,7 @@ public class TablesController {
      */
     @RequestMapping("delete")
     @ResponseBody
-    public Object delete(Integer id){
+    public Object delete(Long id){
         try{
             tablesService.deleteByPrimaryKey(id);
             return Result.ok();

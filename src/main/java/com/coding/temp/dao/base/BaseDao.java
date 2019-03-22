@@ -14,7 +14,7 @@ public interface BaseDao<T>{
      * @param id
      * @return
      */
-    T selectByPrimaryKey(Integer id);
+    T selectByPrimaryKey(Long id);
 
     /**
      * 获取所有列表
@@ -48,7 +48,7 @@ public interface BaseDao<T>{
      * @param id
      * @return
      */
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     /**
      * 查询总条数

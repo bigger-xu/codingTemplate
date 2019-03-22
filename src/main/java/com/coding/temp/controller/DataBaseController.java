@@ -41,7 +41,8 @@ public class DataBaseController {
     @ResponseBody
     public Object list(DataBase dataBase){
         try {
-            return dataBaseService.selectPage(dataBase);
+//            return dataBaseService.selectPage(dataBase);
+            return null;
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();
@@ -78,7 +79,7 @@ public class DataBaseController {
      */
     @RequestMapping("delete")
     @ResponseBody
-    public Object delete(Integer id){
+    public Object delete(Long id){
         try{
             dataBaseService.deleteByPrimaryKey(id);
             return Result.ok();
