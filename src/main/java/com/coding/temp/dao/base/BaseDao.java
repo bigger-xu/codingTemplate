@@ -20,7 +20,7 @@ public interface BaseDao<T>{
      * 获取所有列表
      * @return
      */
-    List<T> selectAllUserList();
+    List<T> selectAllList();
 
     /**
      * 根据条件查询列表
@@ -55,4 +55,18 @@ public interface BaseDao<T>{
      * @return
      */
     int selectListCount();
+
+    /**
+     * 查询分页列表
+     * @param obj
+     * @return
+     */
+    List<T> selectPageList(T obj);
+
+    /**
+     * 查询分页总条数
+     * @return
+     */
+    int selectPageCount();
+
 }

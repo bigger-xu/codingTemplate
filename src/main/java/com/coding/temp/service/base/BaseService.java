@@ -1,5 +1,7 @@
 package com.coding.temp.service.base;
 
+import com.coding.temp.utils.Page;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ public interface BaseService<T> extends Serializable {
      * 获取所有列表
      * @return
      */
-    List<T> selectAllUserList();
+    List<T> selectAllList();
 
     /**
      * 根据条件查询列表
@@ -54,4 +56,11 @@ public interface BaseService<T> extends Serializable {
      * @return
      */
     int selectListCount();
+
+    /**
+     * 查询分页
+     * @param obj
+     * @return
+     */
+    Page<T> selectPage(T obj);
 }

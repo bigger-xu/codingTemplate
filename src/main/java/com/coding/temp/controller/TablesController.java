@@ -1,7 +1,7 @@
 package com.coding.temp.controller;
 
-import com.coding.temp.entity.Connect;
-import com.coding.temp.service.ConnectService;
+import com.coding.temp.entity.Tables;
+import com.coding.temp.service.TablesService;
 import com.coding.temp.utils.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,23 +15,22 @@ import java.util.Date;
 /**
  * @author Zhang Yongei
  * @version 1.0
- * @description
- * @date 2019-03-21
+ * @date 2019-03-22
  */
 @Controller
-@RequestMapping("connect")
-public class ConnectController {
+@RequestMapping("tables")
+public class TablesController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectController.class);
     @Autowired
-    private ConnectService connectService;
+    private TablesService tablesService;
 
     /**
-     * 数据库连接首页
+     * 数据库首页
      * @return
      */
     @RequestMapping
     public String index(){
-        return "connect/index";
+        return "tables/index";
     }
 
     /**
@@ -40,9 +39,9 @@ public class ConnectController {
      */
     @RequestMapping("list")
     @ResponseBody
-    public Object list(Connect connect){
+    public Object list(Tables tables){
         try {
-            return connectService.selectPage(connect);
+            return tablesService.selectPage(tables);
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();
@@ -51,19 +50,19 @@ public class ConnectController {
 
     /**
      * 添加或者修改
-     * @param connect
+     * @param tables
      * @return
      */
     @RequestMapping("saveOrUpdate")
     @ResponseBody
-    public Object saveOrUpdate(Connect connect){
+    public Object saveOrUpdate(Tables tables){
         try{
             Date date  = new Date();
-            if(connect.getId() != null){
-                connect.setCreateTime(date);
-                connectService.insert(connect);
+            if(tables.getId() != null){
+                tables.setCreateTime(date);
+                tablesService.insert(tables);
             }else{
-                connectService.updateByPrimaryKeySelective(connect);
+                tablesService.updateByPrimaryKeySelective(tables);
             }
             return Result.ok();
         }catch (Exception e){
@@ -81,7 +80,7 @@ public class ConnectController {
     @ResponseBody
     public Object delete(Integer id){
         try{
-            connectService.deleteByPrimaryKey(id);
+            tablesService.deleteByPrimaryKey(id);
             return Result.ok();
         }catch (Exception e){
             return Result.error();

@@ -1,6 +1,7 @@
 package com.coding.temp.service.base;
 
 import com.coding.temp.dao.base.BaseDao;
+import com.coding.temp.utils.Page;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,19 +19,16 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     public abstract BaseDao<T> getNameSpace();
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public T selectByPrimaryKey(Integer id) {
         return getNameSpace().selectByPrimaryKey(id);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public List<T> selectAllUserList() {
-        return getNameSpace().selectAllUserList();
+    public List<T> selectAllList() {
+        return getNameSpace().selectAllList();
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public List<T> selectUserListByParams(Map<String, Object> map) {
         return getNameSpace().selectUserListByParams(map);
     }
@@ -54,8 +52,17 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public int selectListCount() {
         return getNameSpace().selectListCount();
     }
+
+    @Override
+    public Page<T> selectPage(T obj){
+        List<T> list = getNameSpace().selectPageList(obj);
+        int count = getNameSpace().selectPageCount();
+        Page<T> page = new Page<>(count);
+        page.setItems(list);
+        return page;
+    }
+
 }
