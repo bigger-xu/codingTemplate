@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coding.temp.dao.TablesMapper" >
+    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.coding.temp.entity.Tables" >
+        select
+        <include refid="Base_Column_List" />
+        from tables
+        where 1=1
+        <if test="userId != null" >
+            and user_id = #{userId,jdbcType=BIGINT}
+        </if>
+        limit #{startIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
+    <select id="selectPageCount" resultType="java.lang.Integer" parameterType="com.coding.temp.entity.Tables" >
+        select
+        count(1)
+        from tables
+        where 1=1
+        <if test="userId != null" >
+            and user_id = #{userId,jdbcType=BIGINT}
+        </if>
+    </select>
+
+    <select id="selectByPrimarySearch" resultMap="BaseResultMap" parameterType="com.coding.temp.entity.Tables">
+        select
+        <include refid="Base_Column_List" />
+        from tables
+        where 1=1
+        <if test="name != null" >
+            and `name` = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="dbId != null" >
+            and db_id = #{dbId,jdbcType=VARCHAR}
+        </if>
+        <if test="userId != null" >
+            and user_id = #{userId,jdbcType=BIGINT}
+        </if>
+    </select>
+</mapper>

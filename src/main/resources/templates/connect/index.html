@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>首页</title>
+    <title>数据库连接</title>
     <#include "../common/include_css.html">
 </head>
 <body class="fixed-top">
@@ -37,16 +37,9 @@
                                     <div class="form-inline" id="searchForm">
                                         <div class="form-group">
                                             <input type="hidden" name="pageCount" id="pageCountParam" />
-                                            <!--<label class="control-label mr5">状态:</label>
-                                            <select id="state" class="input-small m-wrap" style="margin-right: 25px;">
-                                                <option value="">全部</option>
-                                                <option value="0">未读</option>
-                                                <option value="1">已读</option>
-                                            </select>
-                                            <button class="btn btn-primary btn-sm" type="button" onclick="loadPage()" >搜索</button>
-                                            <button class="btn btn-default btn-sm" type="button" onclick="resetValue()">重置</button>-->
+                                            <button class="btn btn-primary btn-sm" type="button" onclick="loadPage()" >重新加载</button>
                                             <div class="pull-right" style="padding-bottom: 10px;">
-                                                <button class="btn btn-primary add" type="button">添加</button>
+                                                <a class="btn btn-primary add" href="/connect/add" type="button">添加</a>
                                             </div>
                                         </div>
                                     </div>
@@ -101,8 +94,8 @@
         <td key="encode"></td>
         <td key="dbType"></td>
         <td>
-            <a class="btn btn-primary btn-sm create-e" title="修改">生成数据库</a>
-            <a class="btn btn-primary btn-sm list-e" title="修改">数据库列表</a>
+            <a class="btn btn-primary btn-sm create-e" title="生成数据库">生成数据库</a>
+            <a class="btn btn-primary btn-sm list-e" title="数据库列表">数据库列表</a>
             <a class="btn btn-primary btn-sm edit-e" title="修改">修改</a>
             <a class="btn btn-primary btn-sm delete-e" title="删除">删除</a>
         </td>

@@ -18,4 +18,10 @@ public interface ConnectService extends BaseService<Connect> {
      * @return
      */
     Page<Connect> selectPage(Connect connect);
+
+    /**
+     * 生成数据库
+     * @param id
+     */
+    Boolean createDateBase(Long id,Long userId);
 }

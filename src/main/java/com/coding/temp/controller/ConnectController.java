@@ -54,6 +54,12 @@ public class ConnectController {
         }
     }
 
+    /**
+     * 添加页面
+     * @param id
+     * @param model
+     * @return
+     */
     @RequestMapping("add")
     public String add(Long id, Model model){
         if(id != null){
@@ -111,10 +117,14 @@ public class ConnectController {
      */
     @RequestMapping("createDateBase")
     @ResponseBody
-    public Object createDateBase(Long id){
+    public Object createDateBase(Long id,HttpServletRequest request){
         try{
-            Connect connect = connectService.selectByPrimaryKey(id);
-            return Result.ok();
+            Boolean flag = connectService.createDateBase(id,SessionUtil.getUserId(request));
+            if(flag){
+                return Result.ok();
+            }else{
+                return Result.error();
+            }
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();

@@ -115,8 +115,8 @@ var hideKey = "hdkey";
                         pageCustomize['moreBtn'] = '<li><a pageNumPanel="true">...</a></li>'; //更多
                         pageCustomize['next'] ='<li><a href="javaScript:void(0);" class="nextSmSkill">下一页</a></li><li><a href="javaScript:void(0);" class="lastSmSkill">末页</a></li>';//下一个
                         pageCustomize['checkedClass'] = 'active';// 选中class
-                        pageCustomize['orderBtnBefore'] = ['<li><a href="javaScript:void(0);" class="nextSmSkill">共<font class="smSkillPageNum">'+result.totalPage+'</font>页</a></li>'];
-                        var _start = result["pageNum"] ;
+                        pageCustomize['orderBtnBefore'] = ['<li><a href="javaScript:void(0);">共<font class="smSkillPageNum">'+result.totalPage+'</font>页</a></li>'];
+                        var _start = result["page"] ;
                         $(defaultParams.pageModel).customPage(result,_start,6,"reloadPage",pageCustomize);
                         defaultParams.callback(result);
                     }

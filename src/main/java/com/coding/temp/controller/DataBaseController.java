@@ -3,13 +3,16 @@ package com.coding.temp.controller;
 import com.coding.temp.entity.DataBase;
 import com.coding.temp.service.DataBaseService;
 import com.coding.temp.utils.Result;
+import com.coding.temp.utils.SessionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -29,7 +32,8 @@ public class DataBaseController {
      * @return
      */
     @RequestMapping
-    public String index(){
+    public String index(Long connectId, Model model){
+        model.addAttribute("connectId",connectId);
         return "dataBase/index";
     }
 
@@ -37,12 +41,12 @@ public class DataBaseController {
      * 列表数据
      * @return
      */
-    @RequestMapping("list")
+    @RequestMapping("page")
     @ResponseBody
-    public Object list(DataBase dataBase){
+    public Object list(DataBase dataBase, HttpServletRequest request){
         try {
-//            return dataBaseService.selectPage(dataBase);
-            return null;
+            dataBase.setUserId(SessionUtil.getUserId(request));
+            return dataBaseService.selectPage(dataBase);
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();
@@ -84,6 +88,22 @@ public class DataBaseController {
             dataBaseService.deleteByPrimaryKey(id);
             return Result.ok();
         }catch (Exception e){
+            return Result.error();
+        }
+    }
+
+    @RequestMapping("createTables")
+    @ResponseBody
+    public Object createTables(Long id,HttpServletRequest request){
+        try{
+            Boolean flag = dataBaseService.createTables(id,SessionUtil.getUserId(request));
+            if(flag){
+                return Result.ok();
+            }else{
+                return Result.error();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
             return Result.error();
         }
     }

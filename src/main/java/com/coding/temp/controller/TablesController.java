@@ -3,6 +3,7 @@ package com.coding.temp.controller;
 import com.coding.temp.entity.Tables;
 import com.coding.temp.service.TablesService;
 import com.coding.temp.utils.Result;
+import com.coding.temp.utils.SessionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -39,9 +41,10 @@ public class TablesController {
      */
     @RequestMapping("list")
     @ResponseBody
-    public Object list(Tables tables){
+    public Object list(Tables tables, HttpServletRequest request){
         try {
-            return null;
+            tables.setUserId(SessionUtil.getUserId(request));
+            return tablesService.selectPage(tables);
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();

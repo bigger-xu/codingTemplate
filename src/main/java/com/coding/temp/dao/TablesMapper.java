@@ -13,4 +13,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TablesMapper  extends BaseDao<Tables> {
 
+    /**
+     * 根据对象检索
+     * @param table
+     * @return
+     */
+    Tables selectByPrimarySearch(Tables table);
 }

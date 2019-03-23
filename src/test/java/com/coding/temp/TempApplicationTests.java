@@ -1,6 +1,7 @@
 package com.coding.temp;
 
 import com.coding.temp.entity.User;
+import com.coding.temp.service.ConnectService;
 import com.coding.temp.service.UserService;
 import com.coding.temp.utils.Md5Util;
 import org.junit.Test;
@@ -19,6 +20,8 @@ public class TempApplicationTests {
     private static final Logger LOGGER = LoggerFactory.getLogger(TempApplicationTests.class);
     @Autowired
     private UserService userService;
+    @Autowired
+    private ConnectService connectService;
     @Test
     public void contextLoads() {
 //        User user = new User();
@@ -28,6 +31,8 @@ public class TempApplicationTests {
 //        user.setCreateTime(new Date());
 //        userService.insert(user);
 //        LOGGER.info("用户添加成功,{}", user.toString());
+
+         connectService.createDateBase(2L,1L);
     }
 
 }

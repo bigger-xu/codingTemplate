@@ -13,4 +13,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DataBaseMapper  extends BaseDao<DataBase> {
 
+    /**
+     * 根据DB中的参数查询数据库
+     * @param db
+     * @return
+     */
+    DataBase selectByPrimarySearch(DataBase db);
 }

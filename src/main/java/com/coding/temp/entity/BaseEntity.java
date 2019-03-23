@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @date 2019-03-22
  */
 public class BaseEntity implements Serializable {
-    private Integer pageNum = 0;
+    private Integer pageNum = 1;
     private Integer pageSize = 10;
     private Integer startIndex;
 

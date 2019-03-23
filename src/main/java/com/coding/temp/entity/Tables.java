@@ -7,7 +7,7 @@ import java.util.Date;
  * @date 2019-03-20
  * @version 1.0
  */
-public class Tables {
+public class Tables extends BaseEntity{
     private Long id;
 
     private String name;
