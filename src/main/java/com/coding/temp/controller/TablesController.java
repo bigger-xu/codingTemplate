@@ -91,4 +91,26 @@ public class TablesController {
             return Result.error();
         }
     }
+
+    /**
+     * 生成字段
+     * @param id
+     * @param request
+     * @return
+     */
+    @RequestMapping("createColumn")
+    @ResponseBody
+    public Object createColumn(Long id,HttpServletRequest request){
+        try{
+            Boolean flag = tablesService.createColumn(id,SessionUtil.getUserId(request));
+            if(flag){
+                return Result.ok();
+            }else{
+                return Result.error();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
 }

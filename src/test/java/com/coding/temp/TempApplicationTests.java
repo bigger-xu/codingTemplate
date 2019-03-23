@@ -1,7 +1,9 @@
 package com.coding.temp;
 
 import com.coding.temp.entity.User;
+import com.coding.temp.service.ColumnService;
 import com.coding.temp.service.ConnectService;
+import com.coding.temp.service.TablesService;
 import com.coding.temp.service.UserService;
 import com.coding.temp.utils.Md5Util;
 import org.junit.Test;
@@ -21,7 +23,7 @@ public class TempApplicationTests {
     @Autowired
     private UserService userService;
     @Autowired
-    private ConnectService connectService;
+    private TablesService tablesService;
     @Test
     public void contextLoads() {
 //        User user = new User();
@@ -32,7 +34,7 @@ public class TempApplicationTests {
 //        userService.insert(user);
 //        LOGGER.info("用户添加成功,{}", user.toString());
 
-         connectService.createDateBase(2L,1L);
+          tablesService.createColumn(1L,1L);
     }
 
 }

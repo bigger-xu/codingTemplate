@@ -37,7 +37,7 @@
                                     <div class="form-inline" id="searchForm">
                                         <div class="form-group">
                                             <input type="hidden" name="pageCount" id="pageCountParam" />
-                                            <input type="hidden" name="connectId" id="connectId" value="${connectId}"/>
+                                            <input type="hidden" name="tablesId" id="tablesId" value="${tablesId}"/>
                                             <button class="btn btn-primary btn-sm" type="button" onclick="loadPage()" >重新加载</button>
                                             <div class="pull-right" style="padding-bottom: 10px;">
                                                 <a class="btn btn-default" href="javascript:history.go(-1);" type="button">返回上一页</a>
@@ -48,11 +48,14 @@
                                         <thead>
                                         <tr>
                                             <th>序号</th>
-                                            <th>数据库名称</th>
-                                            <th>命名空间</th>
-                                            <th>替换表前缀源</th>
-                                            <th>是否替换表前缀</th>
-                                            <th width="20%">操作</th>
+                                            <th>字段名称</th>
+                                            <th>字段属性名</th>
+                                            <th>属性变量名称</th>
+                                            <th>字段描述</th>
+                                            <th>字段类型</th>
+                                            <th>对象类型</th>
+                                            <th>对应对象包名</th>
+                                            <th width="10%">操作</th>
                                         </tr>
                                         </thead>
                                         <tbody id="itemsPanel">
@@ -63,9 +66,9 @@
 
                                         </ul>
                                         <select id="pageCount" class="input-mini" style="float: right;">
-                                            <option value="10" selected="selected">10</option>
+                                            <option value="10">10</option>
                                             <option value="25">25</option>
-                                            <option value="50">50</option>
+                                            <option value="50" selected="selected">50</option>
                                             <option value="100">100</option>
                                             <option value="1000">1000</option>
                                         </select>
@@ -85,17 +88,19 @@
         <input type="hidden" class="id" key="id">
         <td key="num"></td>
         <td key="name"></td>
-        <td key="nameSpace"></td>
-        <td key="dbPrefixSource"></td>
-        <td key="prefixFlag"></td>
+        <td key="attrName"></td>
+        <td key="attrVariableName"></td>
+        <td key="columnsDesc"></td>
+        <td key="columnsType"></td>
+        <td key="objectType"></td>
+        <td key="packageName"></td>
         <td>
-            <a class="btn btn-primary btn-sm create-e" title="生成数据库">生成表</a>
-            <a class="btn btn-primary btn-sm list-e" title="数据库列表">数据表列表</a>
+            <a class="btn btn-primary btn-sm edit-e" title="修改">修改</a>
         </td>
     </tr>
 </table>
 <#include "../common/footer.html">
 <#include "../common/include_js.html">
-<script src="/static/js/dataBase/index.js"></script>
+<script src="/static/js/column/index.js"></script>
 </body>
 </html>

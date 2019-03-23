@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coding.temp.dao.ColumnMapper" >
+  <resultMap id="BaseResultMap" type="com.coding.temp.entity.Column" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="attr_variable_name" property="attrVariableName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="columns_desc" property="columnsDesc" jdbcType="VARCHAR" />
+    <result column="columns_type" property="columnsType" jdbcType="VARCHAR" />
+    <result column="object_type" property="objectType" jdbcType="VARCHAR" />
+    <result column="package_name" property="packageName" jdbcType="VARCHAR" />
+    <result column="display_type_code" property="displayTypeCode" jdbcType="VARCHAR" />
+    <result column="display_type" property="displayType" jdbcType="VARCHAR" />
+    <result column="validate_type_code" property="validateTypeCode" jdbcType="VARCHAR" />
+    <result column="validate_type" property="validateType" jdbcType="VARCHAR" />
+    <result column="display_position_code" property="displayPositionCode" jdbcType="VARCHAR" />
+    <result column="display_position" property="displayPosition" jdbcType="VARCHAR" />
+    <result column="search_flag" property="searchFlag" jdbcType="VARCHAR" />
+    <result column="table_id" property="tableId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, attr_name, attr_variable_name, name, columns_desc, columns_type, object_type, 
+    package_name, display_type_code, display_type, validate_type_code, validate_type, 
+    display_position_code, display_position, search_flag, table_id, user_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from `column`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `column`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.coding.temp.entity.Column" >
+    insert into `column` (id, attr_name, attr_variable_name,
+      name, columns_desc, columns_type, 
+      object_type, package_name, display_type_code, 
+      display_type, validate_type_code, validate_type, 
+      display_position_code, display_position, search_flag, 
+      table_id, user_id, create_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{attrName,jdbcType=VARCHAR}, #{attrVariableName,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{columnsDesc,jdbcType=VARCHAR}, #{columnsType,jdbcType=VARCHAR}, 
+      #{objectType,jdbcType=VARCHAR}, #{packageName,jdbcType=VARCHAR}, #{displayTypeCode,jdbcType=VARCHAR}, 
+      #{displayType,jdbcType=VARCHAR}, #{validateTypeCode,jdbcType=VARCHAR}, #{validateType,jdbcType=VARCHAR}, 
+      #{displayPositionCode,jdbcType=VARCHAR}, #{displayPosition,jdbcType=VARCHAR}, #{searchFlag,jdbcType=VARCHAR}, 
+      #{tableId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.coding.temp.entity.Column" >
+    insert into `column`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="attrName != null" >
+        attr_name,
+      </if>
+      <if test="attrVariableName != null" >
+        attr_variable_name,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="columnsDesc != null" >
+        columns_desc,
+      </if>
+      <if test="columnsType != null" >
+        columns_type,
+      </if>
+      <if test="objectType != null" >
+        object_type,
+      </if>
+      <if test="packageName != null" >
+        package_name,
+      </if>
+      <if test="displayTypeCode != null" >
+        display_type_code,
+      </if>
+      <if test="displayType != null" >
+        display_type,
+      </if>
+      <if test="validateTypeCode != null" >
+        validate_type_code,
+      </if>
+      <if test="validateType != null" >
+        validate_type,
+      </if>
+      <if test="displayPositionCode != null" >
+        display_position_code,
+      </if>
+      <if test="displayPosition != null" >
+        display_position,
+      </if>
+      <if test="searchFlag != null" >
+        search_flag,
+      </if>
+      <if test="tableId != null" >
+        table_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="attrName != null" >
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrVariableName != null" >
+        #{attrVariableName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="columnsDesc != null" >
+        #{columnsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="columnsType != null" >
+        #{columnsType,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null" >
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayTypeCode != null" >
+        #{displayTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="displayType != null" >
+        #{displayType,jdbcType=VARCHAR},
+      </if>
+      <if test="validateTypeCode != null" >
+        #{validateTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validateType != null" >
+        #{validateType,jdbcType=VARCHAR},
+      </if>
+      <if test="displayPositionCode != null" >
+        #{displayPositionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="displayPosition != null" >
+        #{displayPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="searchFlag != null" >
+        #{searchFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="tableId != null" >
+        #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coding.temp.entity.Column" >
+    update `column`
+    <set >
+      <if test="attrName != null" >
+        attr_name = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrVariableName != null" >
+        attr_variable_name = #{attrVariableName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="columnsDesc != null" >
+        columns_desc = #{columnsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="columnsType != null" >
+        columns_type = #{columnsType,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null" >
+        object_type = #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null" >
+        package_name = #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayTypeCode != null" >
+        display_type_code = #{displayTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="displayType != null" >
+        display_type = #{displayType,jdbcType=VARCHAR},
+      </if>
+      <if test="validateTypeCode != null" >
+        validate_type_code = #{validateTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validateType != null" >
+        validate_type = #{validateType,jdbcType=VARCHAR},
+      </if>
+      <if test="displayPositionCode != null" >
+        display_position_code = #{displayPositionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="displayPosition != null" >
+        display_position = #{displayPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="searchFlag != null" >
+        search_flag = #{searchFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="tableId != null" >
+        table_id = #{tableId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coding.temp.entity.Column" >
+    update `column`
+    set attr_name = #{attrName,jdbcType=VARCHAR},
+      attr_variable_name = #{attrVariableName,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      columns_desc = #{columnsDesc,jdbcType=VARCHAR},
+      columns_type = #{columnsType,jdbcType=VARCHAR},
+      object_type = #{objectType,jdbcType=VARCHAR},
+      package_name = #{packageName,jdbcType=VARCHAR},
+      display_type_code = #{displayTypeCode,jdbcType=VARCHAR},
+      display_type = #{displayType,jdbcType=VARCHAR},
+      validate_type_code = #{validateTypeCode,jdbcType=VARCHAR},
+      validate_type = #{validateType,jdbcType=VARCHAR},
+      display_position_code = #{displayPositionCode,jdbcType=VARCHAR},
+      display_position = #{displayPosition,jdbcType=VARCHAR},
+      search_flag = #{searchFlag,jdbcType=VARCHAR},
+      table_id = #{tableId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

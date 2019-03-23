@@ -25,4 +25,12 @@ public interface TablesService extends BaseService<Tables> {
      * @return
      */
     Tables selectByPrimarySearch(Tables table);
+
+    /**
+     * 生成字段
+     * @param id
+     * @param userId
+     * @return
+     */
+    Boolean createColumn(Long id, Long userId);
 }

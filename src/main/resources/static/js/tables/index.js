@@ -36,3 +36,25 @@ $("#pageCount").change(function(){
     $("#pageCountParam").val($(this).val());
     loadPage();
 });
+$(document).on("click", ".create-e", function () {
+    var id = $(this).parent().parent().find("[key=id]").val();
+    layer.load(1, {shade: [0.5,'#000']});
+    $.ajax({
+        data: {"id":id},//提交的数据
+        url: "/tables/createColumn",//提交连接
+        type: 'post',
+        dataType: 'json',
+        success: function (result) {
+            layer.closeAll('loading');
+            if (result.code == 0) {
+                layer.msg("生成成功");
+            }else {
+                layer.msg(result.msg);
+            }
+        }//回调方法
+    });
+});
+$(document).on("click", ".list-e", function () {
+    var id = $(this).parent().parent().find("[key=id]").val();
+    window.location.href = "/column?tablesId=" + id;
+});

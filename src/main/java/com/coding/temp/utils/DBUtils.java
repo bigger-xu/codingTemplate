@@ -1,5 +1,6 @@
 package com.coding.temp.utils;
 
+import com.coding.temp.entity.Column;
 import com.coding.temp.entity.Connect;
 import com.coding.temp.entity.DataBase;
 import com.coding.temp.entity.Tables;
@@ -23,33 +24,32 @@ public class DBUtils {
     public DBUtils() {
     }
 
-//    public List<Column> getColumns(Connect connect, String dataBaseName, String tableName) throws Exception {
-//        ArrayList columns = new ArrayList();
-//
-//        try {
-//            Connection conn = this.getConnection(connect, dataBaseName);
-//            Statement stat = conn.createStatement();
-//            ResultSet rs = stat.executeQuery("select COLUMN_NAME,COLUMN_COMMENT,DATA_TYPE,TABLE_SCHEMA,TABLE_NAME,CHARACTER_MAXIMUM_LENGTH from Information_schema.columns where table_schema='" + dataBaseName + "' and TABLE_NAME='" + tableName + "'");
-//
-//            while(rs.next()) {
-//                Column column = new Column();
-//                column.setName(rs.getString(1));
-//                column.setColumnsDesc(rs.getString(2));
-//                column.setColumnsType(rs.getString(3));
-//                column.setAttrVariableName(StringUtil.javaStyle(column.getName()));
-//                column.setAttrName(StringUtil.capFirst(column.getAttrVariableName()));
-//                columns.add(column);
-//            }
-//
-//            rs.close();
-//            stat.close();
-//            conn.close();
-//            return columns;
-//        } catch (Exception var9) {
-//            var9.printStackTrace();
-//            throw var9;
-//        }
-//    }
+    public List<Column> getColumns(Connect connect, String dataBaseName, String tableName) throws Exception {
+        ArrayList columns = new ArrayList();
+
+        try {
+            Connection conn = this.getConnection(connect, dataBaseName);
+            Statement stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery("select COLUMN_NAME,COLUMN_COMMENT,DATA_TYPE,TABLE_SCHEMA,TABLE_NAME,CHARACTER_MAXIMUM_LENGTH from Information_schema.columns where table_schema='" + dataBaseName + "' and TABLE_NAME='" + tableName + "'");
+
+            while(rs.next()) {
+                Column column = new Column();
+                column.setName(rs.getString(1));
+                column.setColumnsDesc(rs.getString(2));
+                column.setColumnsType(rs.getString(3));
+                column.setAttrVariableName(StringUtil.javaStyle(column.getName()));
+                column.setAttrName(StringUtil.capFirst(column.getAttrVariableName()));
+                columns.add(column);
+            }
+            rs.close();
+            stat.close();
+            conn.close();
+            return columns;
+        } catch (Exception var9) {
+            var9.printStackTrace();
+            throw var9;
+        }
+    }
 
     public List<Tables> getTables(Connect connect, String dataBaseName) throws Exception {
         ArrayList tables = new ArrayList();

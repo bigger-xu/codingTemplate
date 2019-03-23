@@ -39,6 +39,9 @@
                                             <input type="hidden" name="pageCount" id="pageCountParam" />
                                             <input type="hidden" name="dataBaseId" id="dataBaseId" value="${dataBaseId}"/>
                                             <button class="btn btn-primary btn-sm" type="button" onclick="loadPage()" >重新加载</button>
+                                            <div class="pull-right" style="padding-bottom: 10px;">
+                                                <a class="btn btn-default" href="javascript:history.go(-1);" type="button">返回上一页</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <table class="table table-striped table-bordered table-advance table-hover">
@@ -90,6 +93,7 @@
         <td>
             <a class="btn btn-primary btn-sm create-e" title="生成字段">生成字段</a>
             <a class="btn btn-primary btn-sm list-e" title="字段列表">字段列表</a>
+            <a class="btn btn-primary btn-sm download-e" title="字段列表">下载</a>
         </td>
     </tr>
 </table>

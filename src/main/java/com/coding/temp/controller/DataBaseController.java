@@ -92,6 +92,12 @@ public class DataBaseController {
         }
     }
 
+    /**
+     * 生成表
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping("createTables")
     @ResponseBody
     public Object createTables(Long id,HttpServletRequest request){
