@@ -28,7 +28,7 @@ public class TablesServiceImpl extends BaseServiceImpl<Tables> implements Tables
 
     @Override
     public Page<Tables> selectPage(Tables tables) {
-        Page<Tables> page = new Page<>(tablesMapper.selectPageCount(), tables.getPageSize(), tables.getPageNum());
+        Page<Tables> page = new Page<>(tablesMapper.selectPageCount(tables), tables.getPageSize(), tables.getPageNum());
         List<Tables> result = tablesMapper.selectPageList(tables);
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;

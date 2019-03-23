@@ -65,8 +65,9 @@ public interface BaseDao<T>{
 
     /**
      * 查询分页总条数
+     * @param obj
      * @return
      */
-    int selectPageCount();
+    int selectPageCount(T obj);
 
 }

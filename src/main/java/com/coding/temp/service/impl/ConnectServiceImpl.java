@@ -36,7 +36,7 @@ public class ConnectServiceImpl extends BaseServiceImpl<Connect> implements Conn
 
     @Override
     public Page<Connect> selectPage(Connect connect) {
-        Page<Connect> page = new Page<>(connectMapper.selectPageCount(), connect.getPageSize(), connect.getPageNum());
+        Page<Connect> page = new Page<>(connectMapper.selectPageCount(connect), connect.getPageSize(), connect.getPageNum());
         List<Connect> result = connectMapper.selectPageList(connect);
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,7 +32,8 @@ public class TablesController {
      * @return
      */
     @RequestMapping
-    public String index(){
+    public String index(Long dataBaseId, Model model){
+        model.addAttribute("dataBaseId",dataBaseId);
         return "tables/index";
     }
 
@@ -39,7 +41,7 @@ public class TablesController {
      * 列表数据
      * @return
      */
-    @RequestMapping("list")
+    @RequestMapping("page")
     @ResponseBody
     public Object list(Tables tables, HttpServletRequest request){
         try {

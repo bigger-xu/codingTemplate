@@ -9,6 +9,9 @@
         <if test="userId != null" >
             and user_id = #{userId,jdbcType=BIGINT}
         </if>
+        <if test="dbId != null" >
+            and db_id = #{dbId,jdbcType=BIGINT}
+        </if>
         limit #{startIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </select>
     <select id="selectPageCount" resultType="java.lang.Integer" parameterType="com.coding.temp.entity.Tables" >
@@ -18,6 +21,9 @@
         where 1=1
         <if test="userId != null" >
             and user_id = #{userId,jdbcType=BIGINT}
+        </if>
+        <if test="dbId != null" >
+            and db_id = #{dbId,jdbcType=BIGINT}
         </if>
     </select>
 
@@ -30,7 +36,7 @@
             and `name` = #{name,jdbcType=VARCHAR}
         </if>
         <if test="dbId != null" >
-            and db_id = #{dbId,jdbcType=VARCHAR}
+            and db_id = #{dbId,jdbcType=BIGINT}
         </if>
         <if test="userId != null" >
             and user_id = #{userId,jdbcType=BIGINT}

@@ -10,7 +10,6 @@ $(function(){
 function loadPage(page){
     layer.load(1, {shade: [0.5,'#000']});
     var connectId = $("#connectId").val();
-    var type = $("#type").val();
     $("#itemsPanel").skillAjax({
         url: "/dataBase/page",//提交连接
         model:$("#skillModel"),
@@ -64,4 +63,8 @@ $(document).on("click", ".create-e", function () {
             }
         }//回调方法
     });
+});
+$(document).on("click", ".list-e", function () {
+    var id = $(this).parent().parent().find("[key=id]").val();
+    window.location.href = "/tables?dataBaseId=" + id;
 });

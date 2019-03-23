@@ -47,7 +47,7 @@ public class DataBaseServiceImpl extends BaseServiceImpl<DataBase> implements Da
 
     @Override
     public Page<DataBase> selectPage(DataBase dataBase) {
-        Page<DataBase> page = new Page<>(dataBaseMapper.selectPageCount(), dataBase.getPageSize(), dataBase.getPageNum());
+        Page<DataBase> page = new Page<>(dataBaseMapper.selectPageCount(dataBase), dataBase.getPageSize(), dataBase.getPageNum());
         List<DataBase> result = dataBaseMapper.selectPageList(dataBase);
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;
