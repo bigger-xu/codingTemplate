@@ -25,10 +25,10 @@ public interface BaseService<T> extends Serializable {
 
     /**
      * 根据条件查询列表
-     * @param map
+     * @param obj
      * @return
      */
-    List<T> selectUserListByParams(Map<String, Object> map);
+    List<T> selectListByParams(T obj);
 
     /**
      * 插入

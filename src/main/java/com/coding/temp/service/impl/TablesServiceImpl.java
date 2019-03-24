@@ -1,5 +1,6 @@
 package com.coding.temp.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.coding.temp.dao.TablesMapper;
 import com.coding.temp.entity.Column;
 import com.coding.temp.entity.Connect;
@@ -10,17 +11,14 @@ import com.coding.temp.service.ConnectService;
 import com.coding.temp.service.DataBaseService;
 import com.coding.temp.service.TablesService;
 import com.coding.temp.service.base.BaseServiceImpl;
-import com.coding.temp.utils.DBUtils;
-import com.coding.temp.utils.Page;
+import com.coding.temp.utils.*;
+import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 /**
  * @author Zhang Yongwei
@@ -148,5 +146,122 @@ public class TablesServiceImpl extends BaseServiceImpl<Tables> implements Tables
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public JSONObject tableGenerate(Long id, Long userId) {
+        JSONObject result = new JSONObject();
+        try{
+            Long time = System.currentTimeMillis();
+            Tables tables = tablesMapper.selectByPrimaryKey(id);
+            DataBase dataBase = dataBaseService.selectByPrimaryKey(tables.getDbId());
+            List<TemplateConfig> templateList = TemplateConfig.getTemplateConfig();
+            for(TemplateConfig template : templateList){
+                generate(dataBase,tables,userId,template,null,String.valueOf(time));
+            }
+            result.put("url",FreemarkerUtils.getOutPutPath() + time + "/");
+            result.put("fileName",time + ".zip");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private void generate(DataBase dataBase, Tables tables, Long userId, TemplateConfig template, List<Tables> tableList, String timeMillis) throws Exception {
+        Column columnSearch = new Column();
+        columnSearch.setTableId(tables.getId());
+        List<Column> columnList = columnService.selectListByParams(columnSearch);
+        List<Column> updateColumnList = columnService.selectListByParams(columnSearch);
+        List<String> importList = columnService.getPackageNameByTable(tables.getId());
+        Map<String, Object> params = new HashMap();
+        //暂时不要tablesName String packageName = dataBase.getNameSpace() + "." + tables.getNameSpace();
+        String packageName = dataBase.getNameSpace();
+        params.put("package", packageName);
+        params.put("basePackage", dataBase.getNameSpace());
+        params.put("objectName", tables.getObjectName());
+        params.put("objectVariableName", tables.getObjectVariableName());
+        params.put("author", userId);
+        params.put("createTime", DateUtil.getNow());
+        params.put("columnList", columnList);
+        updateColumnList = getUpdateColumnList(updateColumnList);
+        params.put("updateColumnList", updateColumnList);
+        params.put("importList", importList);
+        params.put("objectDes", tables.getTableDesc());
+        params.put("tableName", tables.getName());
+        params.put("columnListStr", this.getColumnAttrStr(columnList));
+        if (null == tableList || tableList.size() == 0) {
+            tableList = new ArrayList();
+            ((List)tableList).add(tables);
+        }
+        params.put("tableList", tableList);
+
+        String templateFile = template.getDir();
+        String nameSpace = packageName.replaceAll("\\.", "\\/");
+        String sourcePath = template.getCodeDir();
+        if (sourcePath.contains("{nameSpace}")) {
+            sourcePath = sourcePath.replaceAll("\\{nameSpace\\}", nameSpace);
+        } else if (sourcePath.contains("{objectName}")) {
+            sourcePath = sourcePath.replaceAll("\\{objectName\\}", tables.getObjectName());
+        } else if (sourcePath.contains("{objectVarName}")) {
+            sourcePath = sourcePath.replaceAll("\\{objectVarName\\}", tables.getObjectVariableName());
+        }
+        String fileStr = FreemarkerUtils.getOutPutPath() + timeMillis + "/" + sourcePath + "/" + this.getFileName(template.getNameRule(), tables.getObjectName(), tables.getObjectVariableName());
+        this.build(templateFile, fileStr, params);
+        params.clear();
+    }
+
+    private void build(String templateFilePath, String filePath, Map<String, Object> data) throws Exception {
+        Template template = FreemarkerUtils.getTemplate(templateFilePath);
+        File file = new File(filePath);
+        File directory = file.getParentFile();
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+        template.process(data, out);
+        out.flush();
+        out.close();
+    }
+
+    private String getColumnAttrStr(List<Column> list) {
+        if (list != null && list.size() > 0) {
+            List<String> attrList = new ArrayList();
+            Iterator i$ = list.iterator();
+            while(i$.hasNext()) {
+                Column col = (Column)i$.next();
+                attrList.add(col.getAttrVariableName());
+            }
+            return StringUtil.listToString(attrList);
+        } else {
+            return "";
+        }
+    }
+
+    public List<Column> getUpdateColumnList(List<Column> updateColumnList) throws Exception {
+        List<Column> newList = new ArrayList();
+        if (updateColumnList != null && updateColumnList.size() > 0) {
+            Iterator i$ = updateColumnList.iterator();
+
+            while(i$.hasNext()) {
+                Column column = (Column)i$.next();
+                String attrName = column.getAttrVariableName();
+                if (column != null && !StringUtils.isEmpty(attrName) && !"id".equals(attrName) && !"uuid".equals(attrName)) {
+                    newList.add(column);
+                }
+            }
+        }
+        return newList;
+    }
+
+    private String getFileName(String nameRule, String objectName, String objectVariableName) {
+        String fileName = nameRule;
+        if (nameRule.contains("{objectName}")) {
+            fileName = nameRule.replaceAll("\\{objectName\\}", objectName);
+        } else if (nameRule.contains("{objectVarName}")) {
+            fileName = nameRule.replaceAll("\\{objectVarName\\}", objectVariableName);
+        }
+
+        return fileName;
     }
 }

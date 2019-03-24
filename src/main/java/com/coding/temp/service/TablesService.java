@@ -1,5 +1,6 @@
 package com.coding.temp.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.coding.temp.entity.Connect;
 import com.coding.temp.entity.Tables;
 import com.coding.temp.service.base.BaseService;
@@ -33,4 +34,12 @@ public interface TablesService extends BaseService<Tables> {
      * @return
      */
     Boolean createColumn(Long id, Long userId);
+
+    /**
+     * 生成表
+     * @param id
+     * @param userId
+     * @return
+     */
+    JSONObject tableGenerate(Long id,Long userId);
 }

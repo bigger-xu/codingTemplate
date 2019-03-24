@@ -42,4 +42,24 @@
             and user_id = #{userId,jdbcType=BIGINT}
         </if>
     </select>
+
+    <select id="selectListByParams" resultMap="BaseResultMap" parameterType="com.coding.temp.entity.Column" >
+        select
+        <include refid="Base_Column_List" />
+        from `column`
+        where 1=1
+        <if test="userId != null" >
+            and user_id = #{userId,jdbcType=BIGINT}
+        </if>
+        <if test="tableId != null" >
+            and table_id = #{tableId,jdbcType=BIGINT}
+        </if>
+    </select>
+
+    <select id="getPackageNameByTable" resultType="java.lang.String" parameterType="java.lang.Long">
+      SELECT
+      distinct package_name
+      FROM `column`
+      WHERE table_id = #{id} and package_name !='' and package_name not like 'java.lang%' and package_name is not null
+      </select>
 </mapper>

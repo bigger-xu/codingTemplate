@@ -4,6 +4,8 @@ import com.coding.temp.entity.Column;
 import com.coding.temp.service.base.BaseService;
 import com.coding.temp.utils.Page;
 
+import java.util.List;
+
 /**
  * 日志业务层
  * @author Zhang Yongwei
@@ -24,4 +26,11 @@ public interface ColumnService extends BaseService<Column> {
      * @return
      */
     Column selectByPrimarySearch(Column column);
+
+    /**
+     * 获取包
+     * @param id
+     * @return
+     */
+    List<String> getPackageNameByTable(Long id);
 }

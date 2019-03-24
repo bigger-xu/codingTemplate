@@ -1,9 +1,11 @@
 package com.coding.temp.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.coding.temp.entity.Tables;
 import com.coding.temp.service.TablesService;
 import com.coding.temp.utils.Result;
 import com.coding.temp.utils.SessionUtil;
+import com.coding.temp.utils.ZipUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author Zhang Yongei
@@ -111,6 +116,25 @@ public class TablesController {
         }catch (Exception e){
             e.printStackTrace();
             return Result.error();
+        }
+    }
+
+    @RequestMapping("downLoad")
+    @ResponseBody
+    public Object downLoad(Long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ZipOutputStream out = new ZipOutputStream(response.getOutputStream());
+        try{
+            JSONObject result = tablesService.tableGenerate(id,SessionUtil.getUserId(request));
+            response.setContentType("application/force-download");
+            response.setHeader("Content-Disposition","attachment; filename="+result.get("fileName"));
+            ZipUtils.doCompress(result.get("url").toString(), out);
+            response.flushBuffer();
+            return Result.ok(result);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.error();
+        }finally{
+            out.close();
         }
     }
 }

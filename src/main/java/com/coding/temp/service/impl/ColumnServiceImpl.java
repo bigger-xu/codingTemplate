@@ -39,4 +39,10 @@ public class ColumnServiceImpl extends BaseServiceImpl<Column> implements Column
     public Column selectByPrimarySearch(Column column) {
         return columnMapper.selectByPrimarySearch(column);
     }
+
+    @Override
+    public List<String> getPackageNameByTable(Long id) {
+
+        return columnMapper.getPackageNameByTable(id);
+    }
 }

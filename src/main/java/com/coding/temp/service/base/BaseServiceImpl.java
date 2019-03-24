@@ -29,8 +29,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     }
 
     @Override
-    public List<T> selectUserListByParams(Map<String, Object> map) {
-        return getNameSpace().selectUserListByParams(map);
+    public List<T> selectListByParams(T obj) {
+        return getNameSpace().selectListByParams(obj);
     }
 
     @Override

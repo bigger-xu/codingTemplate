@@ -4,6 +4,8 @@ import com.coding.temp.dao.base.BaseDao;
 import com.coding.temp.entity.Column;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 字段
  * @author Zhang Yongwei
@@ -19,4 +21,11 @@ public interface ColumnMapper  extends BaseDao<Column> {
      * @return
      */
     Column selectByPrimarySearch(Column column);
+
+    /**
+     * 获取包
+     * @param id
+     * @return
+     */
+    List<String> getPackageNameByTable(Long id);
 }
