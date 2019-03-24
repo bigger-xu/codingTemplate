@@ -34,7 +34,7 @@ public class TempApplicationTests {
 //        userService.insert(user);
 //        LOGGER.info("用户添加成功,{}", user.toString());
 
-          tablesService.createColumn(1L,1L);
+//          tablesService.createColumn(1L,1L);
     }
 
 }

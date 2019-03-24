@@ -4,6 +4,7 @@
  * @date 2019-03-22
  * @version 1.0
  */
+$checkGoodsMap = new Map();
 $(function(){
     loadPage(1);
 });
@@ -58,3 +59,13 @@ $(document).on("click", ".list-e", function () {
     var id = $(this).parent().parent().find("[key=id]").val();
     window.location.href = "/column?tablesId=" + id;
 });
+
+//全选
+function checkAll(obj) {
+    if ($(obj).is(":checked")) {
+        $("#itemsPanel .checkbox").prop("checked", true);
+    } else {
+        $("#itemsPanel .checkbox").removeAttr("checked");
+    }
+    console.log($("#itemsPanel .checkbox").checkboxVal())
+}
