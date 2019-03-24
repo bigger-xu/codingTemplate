@@ -95,7 +95,7 @@
         <if test="sortStr != null and sortStr != ''">
             order by ${r" ${sortStr}"}
         </if>
-        limit #{startIndex},#{pageSize}
+        limit ${r"#{startIndex}"},${r"#{pageSize}"}
     </select>
 
     <select id="selectListCount" parameterType="${package}.entity.vo.${objectName}Vo" resultType="java.lang.Integer">
