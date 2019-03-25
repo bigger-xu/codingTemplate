@@ -7,6 +7,7 @@ import com.coding.temp.service.ConnectService;
 import com.coding.temp.service.DataBaseService;
 import com.coding.temp.service.base.BaseServiceImpl;
 import com.coding.temp.utils.DBUtils;
+import com.coding.temp.utils.Md5Util;
 import com.coding.temp.utils.Page;
 import com.coding.temp.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ public class ConnectServiceImpl extends BaseServiceImpl<Connect> implements Conn
     public Page<Connect> selectPage(Connect connect) {
         Page<Connect> page = new Page<>(connectMapper.selectPageCount(connect), connect.getPageSize(), connect.getPageNum());
         List<Connect> result = connectMapper.selectPageList(connect);
+        if(result != null && result.size() > 0){
+            for(Connect data : result){
+                data.setPassword(Md5Util.compute(data.getPassword() + data.getUserName()));
+            }
+        }
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;
     }
