@@ -28,6 +28,16 @@ public class Tables extends BaseEntity{
 
     private Date createTime;
 
+    private String ids;
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
     public Long getId() {
         return id;
     }

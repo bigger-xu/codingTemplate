@@ -119,12 +119,47 @@ public class TablesController {
         }
     }
 
+    /**
+     * 单个下载
+     * @param id
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
     @RequestMapping("downLoad")
     @ResponseBody
     public Object downLoad(Long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
         ZipOutputStream out = new ZipOutputStream(response.getOutputStream());
         try{
             JSONObject result = tablesService.tableGenerate(id,SessionUtil.getUserId(request));
+            response.setContentType("application/force-download");
+            response.setHeader("Content-Disposition","attachment; filename="+result.get("fileName"));
+            ZipUtils.doCompress(result.get("url").toString(), out);
+            response.flushBuffer();
+            return Result.ok(result);
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.error();
+        }finally{
+            out.close();
+        }
+    }
+
+    /**
+     * 批量下载
+     * @param ids
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("batchDownLoad")
+    @ResponseBody
+    public Object batchDownLoad(String ids, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ZipOutputStream out = new ZipOutputStream(response.getOutputStream());
+        try{
+            JSONObject result = tablesService.tableBatchGenerate(ids,SessionUtil.getUserId(request));
             response.setContentType("application/force-download");
             response.setHeader("Content-Disposition","attachment; filename="+result.get("fileName"));
             ZipUtils.doCompress(result.get("url").toString(), out);

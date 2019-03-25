@@ -42,13 +42,13 @@ public class TemplateConfig {
         //mapperExtendXml
         TemplateConfig templateConfig4 = new TemplateConfig();
         templateConfig4.setDir("mapperExtendXml.ftl");
-        templateConfig4.setCodeDir("594cto/src/main/java/{nameSpace}/mybatis/mapper");
+        templateConfig4.setCodeDir("594cto/src/main/java/{nameSpace}/mybatis/mapper/extends");
         templateConfig4.setNameRule("{objectName}ExtendMapper.xml");
         list.add(templateConfig4);
         //mapperXml
         TemplateConfig templateConfig5 = new TemplateConfig();
         templateConfig5.setDir("mapperXml.ftl");
-        templateConfig5.setCodeDir("594cto/src/main/java/{nameSpace}/mybatis/mapper/extends");
+        templateConfig5.setCodeDir("594cto/src/main/java/{nameSpace}/mybatis/mapper");
         templateConfig5.setNameRule("{objectName}Mapper.xml");
         list.add(templateConfig5);
         //service

@@ -4,6 +4,8 @@ import com.coding.temp.dao.base.BaseDao;
 import com.coding.temp.entity.Tables;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 表Mapper
  * @author Zhang Yongwei
@@ -19,4 +21,5 @@ public interface TablesMapper  extends BaseDao<Tables> {
      * @return
      */
     Tables selectByPrimarySearch(Tables table);
+
 }

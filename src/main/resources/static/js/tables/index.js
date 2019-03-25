@@ -62,22 +62,15 @@ $(document).on("click", ".list-e", function () {
 $(document).on("click", ".download-e", function () {
     var id = $(this).parent().parent().find("[key=id]").val();
     window.location.href="/tables/downLoad?id=" + id;
-    // layer.load(1, {shade: [0.5,'#000']});
-    // $.ajax({
-    //     data: {"id":id},//提交的数据
-    //     url: "/tables/downLoad",//提交连接
-    //     type: 'post',
-    //     dataType: 'json',
-    //     success: function (result) {
-    //         layer.closeAll('loading');
-    //         if (result.code == 0) {
-    //             layer.msg("下载成功");
-    //         }else {
-    //             layer.msg(result.msg);
-    //         }
-    //     }//回调方法
-    // });
 });
+function batchDown(){
+    var ids = $("#itemsPanel .checkbox:checked").checkboxVal();
+    if(ids == null || ids == "" || ids == undefined){
+        layer.msg("请选择要下载的表");
+        return;
+    }
+    window.location.href="/tables/batchDownLoad?ids=" + ids;
+}
 //全选
 function checkAll(obj) {
     if ($(obj).is(":checked")) {
@@ -85,5 +78,4 @@ function checkAll(obj) {
     } else {
         $("#itemsPanel .checkbox").removeAttr("checked");
     }
-    console.log($("#itemsPanel .checkbox").checkboxVal())
 }

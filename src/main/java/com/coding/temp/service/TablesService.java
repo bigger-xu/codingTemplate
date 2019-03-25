@@ -42,4 +42,12 @@ public interface TablesService extends BaseService<Tables> {
      * @return
      */
     JSONObject tableGenerate(Long id,Long userId);
+
+    /**
+     * 批量生成表
+     * @param ids
+     * @param userId
+     * @return
+     */
+    JSONObject tableBatchGenerate(String ids, Long userId);
 }

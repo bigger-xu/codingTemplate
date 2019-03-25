@@ -167,10 +167,37 @@ public class TablesServiceImpl extends BaseServiceImpl<Tables> implements Tables
         return result;
     }
 
+    @Override
+    public JSONObject tableBatchGenerate(String ids, Long userId) {
+        JSONObject result = new JSONObject();
+        try{
+            Long time = System.currentTimeMillis();
+            Tables search = new Tables();
+            search.setIds(ids);
+            search.setUserId(userId);
+            List<Tables> tableList = tablesMapper.selectListByParams(search);
+            DataBase dataBase = dataBaseService.selectByPrimaryKey(tableList.get(0).getDbId());
+            List<TemplateConfig> templateList = TemplateConfig.getTemplateConfig();
+            for(Tables tables : tableList){
+                for(TemplateConfig template : templateList){
+                    generate(dataBase,tables,userId,template,null,String.valueOf(time));
+                }
+            }
+            result.put("url",FreemarkerUtils.getOutPutPath() + time + "/");
+            result.put("fileName",time + ".zip");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     private void generate(DataBase dataBase, Tables tables, Long userId, TemplateConfig template, List<Tables> tableList, String timeMillis) throws Exception {
         Column columnSearch = new Column();
         columnSearch.setTableId(tables.getId());
         List<Column> columnList = columnService.selectListByParams(columnSearch);
+        if(columnList == null || columnList.size() < 1){
+            return;
+        }
         List<Column> updateColumnList = columnService.selectListByParams(columnSearch);
         List<String> importList = columnService.getPackageNameByTable(tables.getId());
         Map<String, Object> params = new HashMap();
@@ -191,7 +218,7 @@ public class TablesServiceImpl extends BaseServiceImpl<Tables> implements Tables
         params.put("columnListStr", this.getColumnAttrStr(columnList));
         if (null == tableList || tableList.size() == 0) {
             tableList = new ArrayList();
-            ((List)tableList).add(tables);
+            tableList.add(tables);
         }
         params.put("tableList", tableList);
 
