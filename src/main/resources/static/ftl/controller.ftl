@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+
 /**
  * 文件名${objectName}Controller.java
  *
@@ -29,7 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("${objectVariableName}")
 public class ${objectName}Controller extends Base${objectName}Controller {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(${objectName}Controller.class);
     @Autowired
     private ${objectName}Service ${objectVariableName}Service;
 

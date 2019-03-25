@@ -79,7 +79,6 @@
     </select>
 
     <select id="selectPageList" parameterType="${package}.entity.vo.${objectName}Vo" resultMap="${objectName}ResultMap">
-        <include refid="public_sql.page_begin" />
         select <include refid="${objectName}_Column_List" /> from ${tableName} where 1=1
         <#list columnList as column>
             <#if column.objectType?exists  &&column.objectType=="String">

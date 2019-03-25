@@ -77,6 +77,23 @@ public class DataBaseController {
     }
 
     /**
+     * 修改命名空间
+     * @param dataBase
+     * @return
+     */
+    @RequestMapping("updateNameSpace")
+    @ResponseBody
+    public Object updateNameSpace(DataBase dataBase){
+        try{
+            dataBaseService.updateByPrimaryKeySelective(dataBase);
+            return Result.ok();
+        }catch (Exception e){
+            e.printStackTrace();
+            return Result.error();
+        }
+    }
+
+    /**
      * 删除数据
      * @param id
      * @return

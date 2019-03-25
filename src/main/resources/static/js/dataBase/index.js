@@ -68,3 +68,33 @@ $(document).on("click", ".list-e", function () {
     var id = $(this).parent().parent().find("[key=id]").val();
     window.location.href = "/tables?dataBaseId=" + id;
 });
+function update(obj){
+    var id = $(obj).parent().parent().find("[key=id]").val();
+    $("#updateId").val(id);
+}
+
+function updateNameSpace(){
+    var id = $("#updateId").val();
+    var packageName = $("#packageName").val();
+    if(packageName == null || packageName == "" || packageName == undefined){
+        layer.msg("请填写命名空间");
+        return;
+    }
+    layer.load(1, {shade: [0.5,'#000']});
+    $.ajax({
+        data: {"id":id,"nameSpace":packageName},//提交的数据
+        url: "/dataBase/updateNameSpace",//提交连接
+        type: 'post',
+        dataType: 'json',
+        success: function (result) {
+            layer.closeAll('loading');
+            if (result.code == 0) {
+                $("#closeBtn").click();
+                layer.msg("操作成功");
+                loadPage();
+            }else {
+                layer.msg(result.msg);
+            }
+        }//回调方法
+    });
+}

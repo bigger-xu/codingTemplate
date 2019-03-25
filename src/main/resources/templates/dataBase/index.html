@@ -89,11 +89,34 @@
         <td key="dbPrefixSource"></td>
         <td key="prefixFlag"></td>
         <td>
+            <a class="btn btn-primary btn-sm edit-package" title="修改命名空间" data-toggle="modal" data-target="#myModalAdd" onclick="update(this)">修改命名空间</a>
             <a class="btn btn-primary btn-sm create-e" title="生成数据库">生成表</a>
             <a class="btn btn-primary btn-sm list-e" title="数据库列表">数据表列表</a>
         </td>
     </tr>
 </table>
+<!--修改弹窗-->
+<div id="myModalAdd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h5>修改命名空间</h5>
+    </div>
+    <div class="modal-body">
+        <form id="dataForm" class="form-horizontal" onsubmit="return false">
+            <div class="form-group" style="margin-left: 80px;margin-bottom: 20px;">
+                <label class="control-label" style="width: 85px;">命名空间</label>
+                <div class="controls" style="margin-left: 65px;">
+                    <input type="hidden" id="updateId">
+                    <input type="text" id="packageName" placeholder="请输入命名空间" class="input-xlarge">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button id="closeBtn" class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+        <button class="btn btn-primary" onclick="updateNameSpace()">保存</button>
+    </div>
+</div>
 <#include "../common/footer.html">
 <#include "../common/include_js.html">
 <script src="/static/js/dataBase/index.js"></script>
