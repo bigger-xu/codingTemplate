@@ -25,7 +25,7 @@ public class ${objectName} extends BaseEntity{
 
 	}
 <#list columnList as column>
-	<#if column.attrVariableName?exists &&column.attrVariableName!="id">
+	<#if column.attrVariableName?exists>
 	/**
 	 * 属性${column.attrName}(${column.columnsDesc})
 	 */
@@ -34,7 +34,7 @@ public class ${objectName} extends BaseEntity{
  </#list>
 
 <#list columnList as column>
-  <#if column.attrVariableName?exists &&column.attrVariableName!="id">
+  <#if column.attrVariableName?exists>
 	/**
 	 *  获取属性${column.attrName}(${column.columnsDesc})
 	 * @return ${column.objectType}

@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -44,7 +46,6 @@ public class ${objectName}Controller extends Base${objectName}Controller {
      * 获取${objectDes}分页数据
      *
      * @param search 查询条件
-     * @param model 模型
      * @return
      */
     @RequestMapping("page")
@@ -54,7 +55,7 @@ public class ${objectName}Controller extends Base${objectName}Controller {
             return ${objectVariableName}Service.selectPage(search);
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.error("请求错误:{}",e)
+            LOGGER.error("请求错误:{}",e);
             return Result.error();
         }
 
@@ -62,10 +63,7 @@ public class ${objectName}Controller extends Base${objectName}Controller {
 
     /**
      * 创建或者更新${objectDes}
-     *
-     * @param model 模型
      * @param ${objectVariableName} ${objectDes}对象
-     * @param result 绑定的结果集
      * @return
      */
     @RequestMapping(value = "saveOrUpdate", method = RequestMethod.POST)
@@ -73,7 +71,6 @@ public class ${objectName}Controller extends Base${objectName}Controller {
         try {
             if (${objectVariableName}.getId() == null) {
                 ${objectVariableName}.setCreateTime(new Date());
-                ${objectVariableName}.setUserId(SessionUtil.getUserId(request));
                 ${objectVariableName}Service.insert(${objectVariableName});
             } else {
                 ${objectVariableName}.setUpdateTime(new Date());
@@ -82,7 +79,7 @@ public class ${objectName}Controller extends Base${objectName}Controller {
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.error("请求错误:{}",e)
+            LOGGER.error("请求错误:{}",e);
             return Result.error();
         }
     }
@@ -100,7 +97,7 @@ public class ${objectName}Controller extends Base${objectName}Controller {
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
-            LOGGER.error("请求错误:{}",e)
+            LOGGER.error("请求错误:{}",e);
             return Result.error();
         }
     }
