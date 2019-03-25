@@ -60,7 +60,7 @@
         select <include refid="${objectName}_Column_List" /> from ${tableName} where id=${r"#{"}id${r"}"}
     </select>
 
-    <select id="selectEntityBySearch" parameterType="${package}.entity.vo.${objectName}Vo" resultMap="${objectName}ResultMap">
+    <select id="selectListBySearch" parameterType="${package}.entity.vo.${objectName}Vo" resultMap="${objectName}ResultMap">
         select <include refid="${objectName}_Column_List" /> from ${tableName} where 1=1
         <#list columnList as column>
             <#if column.objectType?exists  &&column.objectType=="String">
@@ -98,7 +98,7 @@
         limit ${r"#{startIndex}"},${r"#{pageSize}"}
     </select>
 
-    <select id="selectListCount" parameterType="${package}.entity.vo.${objectName}Vo" resultType="java.lang.Integer">
+    <select id="selectPageCount" parameterType="${package}.entity.vo.${objectName}Vo" resultType="java.lang.Integer">
         select count(1) from ${tableName} where 1=1
         <#list columnList as column>
             <#if column.objectType?exists  &&column.objectType=="String">
