@@ -28,6 +28,8 @@ public class TempApplicationTests {
     private static final Logger LOGGER = LoggerFactory.getLogger(TempApplicationTests.class);
     @Autowired
     private UserService userService;
+    @Autowired
+    private TablesService tablesService;
     @Test
     public void contextLoads() throws IOException {
 //        User user = new User();
