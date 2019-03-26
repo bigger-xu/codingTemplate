@@ -25,7 +25,7 @@ function loadPage(page){
                     num ++ ;
                     //为修改按钮赋值
                     var id = $(this).find("[key=id]").val();
-                    $(this).find(".edit-e").attr("href","/connect/add?id="+id);
+                    $(this).find(".edit-e").attr("href","/connect/edit?id="+id);
                 });
             }else{
                 $("#itemsPanel").html("<tr><td style='text-align: center' colspan='9'>暂无数据</td>></tr>")

@@ -29,5 +29,6 @@ public class FreemarkerUtils {
     }
     public static String getOutPutPath(){
        return ClassUtils.getDefaultClassLoader().getResource("").getPath()+ "static/output/";
+//        return "/date/server/tomcat-easyCoding/static/output/";
     }
 }
