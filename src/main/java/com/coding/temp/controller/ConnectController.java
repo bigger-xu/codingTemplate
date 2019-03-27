@@ -56,17 +56,24 @@ public class ConnectController {
 
     /**
      * 添加页面
+     * @return
+     */
+    @RequestMapping("add")
+    public String add(){
+        return "connect/add";
+    }
+
+    /**
+     * 修改页面
      * @param id
      * @param model
      * @return
      */
-    @RequestMapping("add")
-    public String add(Long id, Model model){
-        if(id != null){
-            Connect connect = connectService.selectByPrimaryKey(id);
-            model.addAttribute(connect);
-        }
-        return "connect/add";
+    @RequestMapping("edit")
+    public String edit(Long id, Model model){
+        Connect connect = connectService.selectByPrimaryKey(id);
+        model.addAttribute("connect",connect);
+        return "connect/edit";
     }
 
     /**

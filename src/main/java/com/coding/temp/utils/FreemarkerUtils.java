@@ -3,8 +3,8 @@ package com.coding.temp.utils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
+import org.springframework.core.io.Resource;
 import org.springframework.util.ClassUtils;
-import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +18,9 @@ public class FreemarkerUtils {
 
     public static Template getTemplate(String template) throws IOException {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
-        String templatePath = ClassUtils.getDefaultClassLoader().getResource("").getPath()+ "static/ftl/";
-        cfg.setDirectoryForTemplateLoading(new File(templatePath));
+//        Resource resource = SpringContextUtil.getApplicationContext().getResource("classpath:static/ftl");
+//        cfg.setDirectoryForTemplateLoading(resource.getFile());
+        cfg.setDirectoryForTemplateLoading(new File("/date/server/tomcat-easyCoding/ftl"));
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
@@ -28,6 +29,7 @@ public class FreemarkerUtils {
         return temp;
     }
     public static String getOutPutPath(){
-       return ClassUtils.getDefaultClassLoader().getResource("").getPath()+ "static/output/";
+//       return ClassUtils.getDefaultClassLoader().getResource("").getPath()+ "static/output/";
+        return "/date/server/tomcat-easyCoding/static/output/";
     }
 }

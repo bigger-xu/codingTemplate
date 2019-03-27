@@ -35,40 +35,41 @@
                             <div class="widget blue">
                                 <div class="widget-body">
                                     <form id="dataForm"  onSubmit="return false" class="form-horizontal">
+                                        <input type="hidden" name="id" value="${connect.id}">
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>连接名</label>
                                             <div class="controls">
-                                                <input type="text" name="connectName" value="" placeholder="请输入连接名" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="connectName" value="${connect.connectName}" placeholder="请输入连接名" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>IP地址</label>
                                             <div class="controls">
-                                                <input type="text" name="ip" value="" placeholder="请输入IP地址" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="ip" value="${connect.ip}" placeholder="请输入IP地址" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>用户名</label>
                                             <div class="controls">
-                                                <input type="text" name="userName" value="" placeholder="请输入用户名" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="userName" value="${connect.userName}" placeholder="请输入用户名" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>密码</label>
                                             <div class="controls">
-                                                <input type="password" name="password" value="" placeholder="请输入密码" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="password" name="password" value="${connect.password}" placeholder="请输入密码" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>端口</label>
                                             <div class="controls">
-                                                <input type="text" name="port" value="" placeholder="请输入端口" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="port" value="${connect.port}" placeholder="请输入端口" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><font style="color: #FF0000;">*</font>编码</label>
                                             <div class="controls">
-                                                <input type="text" name="encode" value="" placeholder="请输入编码" autocomplete="off" class="input-xxlarge required" />
+                                                <input type="text" name="encode" value="${connect.encode}" placeholder="请输入编码" autocomplete="off" class="input-xxlarge required" />
                                             </div>
                                         </div>
                                         <div class="control-group">
