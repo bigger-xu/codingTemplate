@@ -93,10 +93,10 @@ public class ${objectName}Controller extends Base${objectName}Controller {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/delete/{id}")
-    public Object delete(@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "/delete/{uuid}")
+    public Object delete(@PathVariable("id") String id, Model model) {
         try {
-            ${objectVariableName}Service.deleteById(id);
+            ${objectVariableName}Service.deleteByUUId(id);
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();

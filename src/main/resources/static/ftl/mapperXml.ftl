@@ -60,6 +60,10 @@
         select <include refid="${objectName}_Column_List" /> from ${tableName} where id=${r"#{"}id${r"}"}
     </select>
 
+    <select id="get${objectName}ByUUId" parameterType="string" resultMap="${objectName}ResultMap">
+        select  <include refid="${tableName}_Column_List" /> from ${tableName} where uuid=${r"#{"}uuid${r"}"}
+    </select>
+
     <select id="selectListBySearch" parameterType="${package}.entity.vo.${objectName}Vo" resultMap="${objectName}ResultMap">
         select <include refid="${objectName}_Column_List" /> from ${tableName} where 1=1
         <#list columnList as column>
@@ -116,5 +120,11 @@
         DELETE FROM
         ${tableName}
         where id=${r"#{"}id${r"}"}
+    </delete>
+
+    <delete id="delete${objectName}ByUUId" parameterType="string">
+        DELETE FROM
+        ${tableName}
+        where uuid=${r"#{"}uuid${r"}"}
     </delete>
 </mapper>
