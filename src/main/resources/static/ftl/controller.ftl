@@ -31,7 +31,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("${objectVariableName}")
-public class ${objectName}Controller extends Base${objectName}Controller {
+public class ${objectName}Controller{
     private static final Logger LOGGER = LoggerFactory.getLogger(${objectName}Controller.class);
     @Autowired
     private ${objectName}Service ${objectVariableName}Service;
@@ -52,7 +52,8 @@ public class ${objectName}Controller extends Base${objectName}Controller {
      * @return
      */
     @RequestMapping("page")
-    public Object list(${objectName}Vo search, Model model) {
+    @ResponseBody
+    public Object list(${objectName}Vo search) {
         try {
             //TODO 设置查询属性
             return ${objectVariableName}Service.selectPage(search);
@@ -70,7 +71,8 @@ public class ${objectName}Controller extends Base${objectName}Controller {
      * @return
      */
     @RequestMapping(value = "saveOrUpdate", method = RequestMethod.POST)
-    public Object saveOrUpdate(${objectName} ${objectVariableName}, HttpServletRequest request) {
+    @ResponseBody
+    public Object saveOrUpdate(${objectName} ${objectVariableName}) {
         try {
             if (${objectVariableName}.getId() == null) {
                 ${objectVariableName}.setCreateTime(new Date());
@@ -94,6 +96,7 @@ public class ${objectName}Controller extends Base${objectName}Controller {
      * @return
      */
     @RequestMapping(value = "/delete/{uuid}")
+    @ResponseBody
     public Object delete(@PathVariable("id") String id, Model model) {
         try {
             ${objectVariableName}Service.deleteByUUId(id);

@@ -7,6 +7,7 @@ package ${package}.service;
 
 import ${package}.entity.${objectName};
 import ${package}.service.base.BaseService;
+import ${package}.utils.Page;
 /**
  * 文件名 ${objectName}Service.java
  * 
@@ -16,7 +17,7 @@ import ${package}.service.base.BaseService;
 public interface ${objectName}Service extends BaseService<${objectName}> {
     /**
      * 查询分页
-     * @param connect
+     * @param ${objectVariableName}
      * @return
      */
     Page<${objectName}> selectPage(${objectName} ${objectVariableName});

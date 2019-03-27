@@ -6,7 +6,14 @@
 package ${package}.service.impl;
 
 import ${package}.entity.${objectName};
-import ${package}.service.base.BaseService;
+import ${package}.dao.${objectName}Mapper;
+import ${package}.service.${objectName}Service;
+import ${package}.service.base.BaseServiceImpl;
+import ${package}.utils.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * 文件名 ${objectName}ServiceImpl.java 
  * 
@@ -23,8 +30,8 @@ public class ${objectName}ServiceImpl extends BaseServiceImpl<${objectName}> imp
     }
 
     @Override
-    public Page<${objectName}> selectPage(${objectName} connect) {
-        Page<${objectName}> page = new Page<>(${objectVariableName}Mapper.selectPageCount(${objectVariableName}), connect.getPageSize(), connect.getPageNum());
+    public Page<${objectName}> selectPage(${objectName} ${objectVariableName}) {
+        Page<${objectName}> page = new Page<>(${objectVariableName}Mapper.selectPageCount(${objectVariableName}), ${objectVariableName}.getPageSize(), ${objectVariableName}.getPageNum());
         List<${objectName}> result = ${objectVariableName}Mapper.selectPageList(${objectVariableName});
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;
