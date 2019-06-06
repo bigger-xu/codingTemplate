@@ -6,6 +6,9 @@
         <result property="${column.attrVariableName}" column="${column.name}" />
         </#list>
     </resultMap>
+    <resultMap id="${objectName}VoResultMap" type="${package}.entity.vo.${objectName}Vo" extends="${objectName}ResultMap">
+
+    </resultMap>
 
     <sql id="${objectName}_Column_List" >
         <#list columnList as column>

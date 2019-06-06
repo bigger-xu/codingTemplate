@@ -60,7 +60,7 @@ public class ${objectName} extends BaseEntity{
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		<#list columnList as column>
-		sb.append("${column.attrName}(${column.columnsDesc}):").append(${column.attrVariableName}).append(" ");
+		sb.append("${column.attrName}:").append(${column.attrVariableName}).append(" ");
 		</#list>
 		return sb.toString();
 	}

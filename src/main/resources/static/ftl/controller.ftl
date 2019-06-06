@@ -10,6 +10,7 @@ import ${package}.entity.vo.${objectName}Vo;
 import ${package}.service.${objectName}Service;
 import ${package}.utils.Result;
 import ${package}.utils.SessionUtil;
+import ${package}.controller.base.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("${objectVariableName}")
-public class ${objectName}Controller{
+public class ${objectName}Controller extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(${objectName}Controller.class);
     @Autowired
     private ${objectName}Service ${objectVariableName}Service;
@@ -65,6 +66,29 @@ public class ${objectName}Controller{
 
     }
 
+
+    /**
+     * 获取${objectDes}添加页
+     * @return
+     */
+    @RequestMapping(value = "/add")
+    public String add(Model model) {
+        return "${objectVariableName}/add";
+    }
+
+    /**
+     * 获取${objectDes}编辑页
+     * @return
+     */
+    @RequestMapping(value = "/edit")
+    public String edit(Long id,Model model) {
+        if(id != null){
+            ${objectName} ${objectVariableName} = ${objectVariableName}Service.selectEntityById(id);
+            model.addAttribute("${objectVariableName}", ${objectVariableName});
+        }
+        return "${objectVariableName}/edit";
+    }
+
     /**
      * 创建或者更新${objectDes}
      * @param ${objectVariableName} ${objectDes}对象
@@ -75,7 +99,7 @@ public class ${objectName}Controller{
     public Object saveOrUpdate(${objectName} ${objectVariableName}) {
         try {
             if (${objectVariableName}.getId() == null) {
-                ${objectVariableName}.setCreateTime(new Date());
+                ${objectVariableName}.setAddTime(new Date());
                 ${objectVariableName}Service.insert(${objectVariableName});
             } else {
                 ${objectVariableName}.setUpdateTime(new Date());
@@ -89,17 +113,16 @@ public class ${objectName}Controller{
         }
     }
 
-
     /**
      * 删除指定ID的${objectDes}信息
      * @param id
      * @return
      */
-    @RequestMapping(value = "/delete/{uuid}")
+    @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@PathVariable("id") String id, Model model) {
+    public Object delete(Long id, Model model) {
         try {
-            ${objectVariableName}Service.deleteByUUId(id);
+            ${objectVariableName}Service.deleteById(id);
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();

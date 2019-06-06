@@ -207,7 +207,7 @@ public class TablesServiceImpl extends BaseServiceImpl<Tables> implements Tables
         params.put("basePackage", dataBase.getNameSpace());
         params.put("objectName", tables.getObjectName());
         params.put("objectVariableName", tables.getObjectVariableName());
-        params.put("author", userId);
+        params.put("author", "Zhang Yongwei");
         params.put("createTime", DateUtil.getNow());
         params.put("columnList", columnList);
         updateColumnList = getUpdateColumnList(updateColumnList);
@@ -227,9 +227,11 @@ public class TablesServiceImpl extends BaseServiceImpl<Tables> implements Tables
         String sourcePath = template.getCodeDir();
         if (sourcePath.contains("{nameSpace}")) {
             sourcePath = sourcePath.replaceAll("\\{nameSpace\\}", nameSpace);
-        } else if (sourcePath.contains("{objectName}")) {
+        }
+        if (sourcePath.contains("{objectName}")) {
             sourcePath = sourcePath.replaceAll("\\{objectName\\}", tables.getObjectName());
-        } else if (sourcePath.contains("{objectVarName}")) {
+        }
+        if (sourcePath.contains("{objectVarName}")) {
             sourcePath = sourcePath.replaceAll("\\{objectVarName\\}", tables.getObjectVariableName());
         }
         String fileStr = FreemarkerUtils.getOutPutPath() + timeMillis + "/" + sourcePath + "/" + this.getFileName(template.getNameRule(), tables.getObjectName(), tables.getObjectVariableName());

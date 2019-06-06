@@ -63,6 +63,36 @@ public class TemplateConfig {
         templateConfig7.setCodeDir("594cto/src/main/java/{nameSpace}/service/impl");
         templateConfig7.setNameRule("{objectName}ServiceImpl.java");
         list.add(templateConfig7);
+        //index jsp
+        TemplateConfig templateConfig8 = new TemplateConfig();
+        templateConfig8.setDir("index_jsp.ftl");
+        templateConfig8.setCodeDir("594cto/src/main/java/{nameSpace}/web/jsp/{objectVarName}");
+        templateConfig8.setNameRule("index.html");
+        list.add(templateConfig8);
+        //add jsp
+        TemplateConfig templateConfig9 = new TemplateConfig();
+        templateConfig9.setDir("add_jsp.ftl");
+        templateConfig9.setCodeDir("594cto/src/main/java/{nameSpace}/web/jsp/{objectVarName}");
+        templateConfig9.setNameRule("add.html");
+        list.add(templateConfig9);
+        //edit jsp
+        TemplateConfig templateConfig10 = new TemplateConfig();
+        templateConfig10.setDir("edit_jsp.ftl");
+        templateConfig10.setCodeDir("594cto/src/main/java/{nameSpace}/web/jsp/{objectVarName}");
+        templateConfig10.setNameRule("edit.html");
+        list.add(templateConfig10);
+        //add js
+        TemplateConfig templateConfig11 = new TemplateConfig();
+        templateConfig11.setDir("add_js.ftl");
+        templateConfig11.setCodeDir("594cto/src/main/java/{nameSpace}/web/js/{objectVarName}");
+        templateConfig11.setNameRule("add.js");
+        list.add(templateConfig11);
+        //index js
+        TemplateConfig templateConfig12 = new TemplateConfig();
+        templateConfig12.setDir("index_js.ftl");
+        templateConfig12.setCodeDir("594cto/src/main/java/{nameSpace}/web/js/{objectVarName}");
+        templateConfig12.setNameRule("index.js");
+        list.add(templateConfig12);
         return list;
     }
 
