@@ -38,12 +38,12 @@ function loadPage(page) {
 
 //进入修改页面
 $(document).on("click", ".edit", function () {
-    var id = $(this).parent().find("[key=id]").val();
-    window.location.href = "/${objectVariableName}/edit?id=" + id;
+    var uuid = $(this).parent().find("[key=uuid]").val();
+    window.location.href = "/${objectVariableName}/edit?uuid=" + uuid;
 });
 //删除
 $(document).on("click", ".delete", function () {
-    var id = $(this).parent().find("[key=id]").val();
+    var uuid = $(this).parent().find("[key=uuid]").val();
     layer.confirm('您确定要删除吗？', {
         btn: ['确定', '关闭'],//按钮
         title: false,
@@ -53,7 +53,7 @@ $(document).on("click", ".delete", function () {
             type: 'post',
             dataType: 'json',
             url: "/${objectVariableName}/delete",
-            data: {"id": id},
+            data: {"uuid": uuid},
             success: function (result) {
                 if (result.flag == 1) {
                     $("#closeBtnLab").click();

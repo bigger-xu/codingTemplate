@@ -96,6 +96,7 @@ ${r'<#include "'}../common/header.html${r'">'}
         </#list>
         <td style="width: 20%">
             <input type="hidden" key="id">
+            <input type="hidden" key="uuid">
             <a class="btn btn-primary del  edit" title="修改">修改</a>
             <a class="btn btn-primary del  delete" title="删除">删除</a>
         </td>

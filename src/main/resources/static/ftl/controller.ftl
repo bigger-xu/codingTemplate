@@ -11,6 +11,8 @@ import ${package}.service.${objectName}Service;
 import ${package}.utils.Result;
 import ${package}.utils.SessionUtil;
 import ${package}.controller.base.BaseController;
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,7 @@ public class ${objectName}Controller extends BaseController {
      * @return
      */
     @RequestMapping
+    @RequiresPermissions("${objectVariableName}")
     public String index(Model model) {
         return "${objectVariableName}/index";
     }
@@ -81,9 +84,9 @@ public class ${objectName}Controller extends BaseController {
      * @return
      */
     @RequestMapping(value = "/edit")
-    public String edit(Long id,Model model) {
-        if(id != null){
-            ${objectName} ${objectVariableName} = ${objectVariableName}Service.selectEntityById(id);
+    public String edit(String uuid,Model model) {
+        if(StringUtils.isNotEmpty(uuid)){
+            ${objectName} ${objectVariableName} = ${objectVariableName}Service.selectEntityByUUId(uuid);
             model.addAttribute("${objectVariableName}", ${objectVariableName});
         }
         return "${objectVariableName}/edit";
@@ -115,14 +118,14 @@ public class ${objectName}Controller extends BaseController {
 
     /**
      * 删除指定ID的${objectDes}信息
-     * @param id
+     * @param uuid
      * @return
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(Long id, Model model) {
+    public Object delete(String uuid, Model model) {
         try {
-            ${objectVariableName}Service.deleteById(id);
+            ${objectVariableName}Service.deleteByUUId(uuid);
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
