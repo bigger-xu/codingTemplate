@@ -65,19 +65,19 @@ public class TemplateConfig {
         list.add(templateConfig7);
         //index jsp
         TemplateConfig templateConfig8 = new TemplateConfig();
-        templateConfig8.setDir("index_jsp.ftl");
+        templateConfig8.setDir("index_ins_jsp.ftl");
         templateConfig8.setCodeDir("594cto/src/main/java/{nameSpace}/web/jsp/{objectVarName}");
         templateConfig8.setNameRule("index.html");
         list.add(templateConfig8);
         //add jsp
         TemplateConfig templateConfig9 = new TemplateConfig();
-        templateConfig9.setDir("add_jsp.ftl");
+        templateConfig9.setDir("add_ins_jsp.ftl");
         templateConfig9.setCodeDir("594cto/src/main/java/{nameSpace}/web/jsp/{objectVarName}");
         templateConfig9.setNameRule("add.html");
         list.add(templateConfig9);
         //edit jsp
         TemplateConfig templateConfig10 = new TemplateConfig();
-        templateConfig10.setDir("edit_jsp.ftl");
+        templateConfig10.setDir("edit_ins_jsp.ftl");
         templateConfig10.setCodeDir("594cto/src/main/java/{nameSpace}/web/jsp/{objectVarName}");
         templateConfig10.setNameRule("edit.html");
         list.add(templateConfig10);

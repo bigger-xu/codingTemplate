@@ -9,7 +9,6 @@ import ${package}.entity.${objectName};
 import ${package}.entity.vo.${objectName}Vo;
 import ${package}.service.${objectName}Service;
 import ${package}.utils.Result;
-import ${package}.utils.SessionUtil;
 import ${package}.controller.base.BaseController;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
