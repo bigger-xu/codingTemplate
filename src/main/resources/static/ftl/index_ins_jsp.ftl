@@ -58,7 +58,7 @@
                                     </ul>
                                     <div style="float: right;">
                                         <span>每页展示条数:</span>
-                                        <select id="pageCount" class="input-mini" >
+                                        <select id="pageSize" class="input-mini" >
                                             <option value="10">10</option>
                                             <option value="25" selected="selected">25</option>
                                             <option value="50">50</option>

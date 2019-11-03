@@ -18,7 +18,7 @@ function loadPage(page) {
         url: "/${objectVariableName}/page",//提交连接
         model: $("#skillModel"),
         pageModel:$("#pageModel"),
-        data: {"pageCount":$("#pageCount").val()},
+        data: {"pageSize":$("#pageSize").val()},
         pageNum: page,
         callback: function (result) {
             layer.closeAll('loading');
