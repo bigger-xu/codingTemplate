@@ -83,13 +83,13 @@ public class TemplateConfig {
         list.add(templateConfig10);
         //add js
         TemplateConfig templateConfig11 = new TemplateConfig();
-        templateConfig11.setDir("add_js.ftl");
+        templateConfig11.setDir("add_ins_js.ftl");
         templateConfig11.setCodeDir("594cto/src/main/java/{nameSpace}/web/js/{objectVarName}");
         templateConfig11.setNameRule("add.js");
         list.add(templateConfig11);
         //index js
         TemplateConfig templateConfig12 = new TemplateConfig();
-        templateConfig12.setDir("index_js.ftl");
+        templateConfig12.setDir("index_ins_js.ftl");
         templateConfig12.setCodeDir("594cto/src/main/java/{nameSpace}/web/js/{objectVarName}");
         templateConfig12.setNameRule("index.js");
         list.add(templateConfig12);
