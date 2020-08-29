@@ -36,4 +36,16 @@ public class ${objectName}ServiceImpl extends BaseServiceImpl<${objectName}> imp
         page.setRows(result == null ? new ArrayList<>() : result);
         return page;
     }
+
+    @Override
+    public void saveOrUpdate(${objectName} ${objectVariableName}){
+        Date date = new Date();
+        if (${objectVariableName}.getId() == null) {
+            ${objectVariableName}.setAddTime(date);
+            this.insert(${objectVariableName});
+        } else {
+            ${objectVariableName}.setUpdateTime(date);
+            this.updateBySelective(${objectVariableName});
+        }
+    }
 }

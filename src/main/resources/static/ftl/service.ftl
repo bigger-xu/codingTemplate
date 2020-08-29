@@ -18,7 +18,14 @@ public interface ${objectName}Service extends BaseService<${objectName}> {
     /**
      * 查询分页
      * @param ${objectVariableName}
-     * @return
+     * @return Page<${objectName}>
      */
     Page<${objectName}> selectPage(${objectName} ${objectVariableName});
+
+    /**
+     * 添加或者修改
+     * @param ${objectVariableName}
+     * @return null
+     */
+    void saveOrUpdate(${objectName} ${objectVariableName});
 }

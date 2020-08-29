@@ -27,30 +27,23 @@ public class ${objectName} extends BaseEntity{
 <#list columnList as column>
 	<#if column.attrVariableName?exists>
 	/**
-	 * 属性${column.attrName}(${column.columnsDesc})
+	 * ${column.attrName}【${column.columnsDesc}】
 	 */
 	private ${column.objectType} ${column.attrVariableName};
 	</#if>
  </#list>
 
-<#list columnList as column>
-  <#if column.attrVariableName?exists>
-	/**
-	 *  获取属性${column.attrName}(${column.columnsDesc})
-	 * @return ${column.objectType}
+ 	/**
+	 * Get/Set方法
 	 * @author ${author}
 	 * @date ${createTime}
-	*/
+	 */
+<#list columnList as column>
+  <#if column.attrVariableName?exists>
 	public ${column.objectType} get${column.attrName}(){
 		return ${column.attrVariableName};
 	}
-	/**
-	* 设置属性${column.attrName}(${column.columnsDesc})
-	* @param ${column.attrVariableName}
-	* @return void
-	* @author ${author}
-	* @date  ${createTime}
-	*/
+	
 	public void set${column.attrName}(${column.objectType} ${column.attrVariableName} ){
 		this.${column.attrVariableName} = ${column.attrVariableName} ;
 	}

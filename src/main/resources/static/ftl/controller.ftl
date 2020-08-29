@@ -40,7 +40,6 @@ public class ${objectName}Controller extends BaseController {
 
     /**
      * 获取${objectDes}列表页
-     * @return
      */
     @RequestMapping
     @RequiresPermissions("${objectVariableName}")
@@ -52,7 +51,6 @@ public class ${objectName}Controller extends BaseController {
      * 获取${objectDes}分页数据
      *
      * @param search 查询条件
-     * @return
      */
     @RequestMapping("page")
     @ResponseBody
@@ -71,7 +69,6 @@ public class ${objectName}Controller extends BaseController {
 
     /**
      * 获取${objectDes}添加页
-     * @return
      */
     @RequestMapping(value = "/add")
     public String add(Model model) {
@@ -80,7 +77,6 @@ public class ${objectName}Controller extends BaseController {
 
     /**
      * 获取${objectDes}编辑页
-     * @return
      */
     @RequestMapping(value = "/edit")
     public String edit(String uuid,Model model) {
@@ -100,13 +96,7 @@ public class ${objectName}Controller extends BaseController {
     @ResponseBody
     public Object saveOrUpdate(${objectName} ${objectVariableName}) {
         try {
-            if (${objectVariableName}.getId() == null) {
-                ${objectVariableName}.setAddTime(new Date());
-                ${objectVariableName}Service.insert(${objectVariableName});
-            } else {
-                ${objectVariableName}.setUpdateTime(new Date());
-                ${objectVariableName}Service.updateBySelective(${objectVariableName});
-            }
+            ${objectVariableName}Service.saveOrUpdate(${objectVariableName});
             return Result.ok();
         } catch (Exception e) {
             e.printStackTrace();
